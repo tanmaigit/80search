@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80Search - Your Personal Search Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>80Search</h1>
+            <p class="tagline">Your gateway to the web</p>
+        </header>
+
+        <main>
+            <div class="search-box">
+                <form id="searchForm">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="What are you looking for?"
+                            autocomplete="off"
+                            required
+                        >
+                        <select id="engineSelect">
+                            <option value="yahoo" selected>Default (Yahoo)</option>
+                            <option value="google">Google</option>
+                        </select>
+                        <button type="submit" class="search-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="about.html">About</a>
+                <span class="separator">•</span>
+                <a href="terms.html">Terms of Service</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
