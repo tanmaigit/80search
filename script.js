@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Random background selection
+    const backgrounds = [
+        'backgrounds/background.png',
+        'backgrounds/background2.png',
+        'backgrounds/background3.png',
+        'backgrounds/background4.png'
+    ];
+    const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    document.body.style.backgroundImage = `url('${randomBackground}')`;
+
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
     const engineSelect = document.getElementById('engineSelect');

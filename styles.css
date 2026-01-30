@@ -6,7 +6,6 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -25,8 +24,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(0px);
     z-index: -1;
 }
 
@@ -51,12 +50,14 @@ header h1 {
     background-clip: text;
     margin-bottom: 10px;
     letter-spacing: -2px;
+    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
 }
 
 .tagline {
     font-size: 1.1rem;
-    color: #666;
-    font-weight: 400;
+    color: #333;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9);
 }
 
 main {
@@ -100,7 +101,7 @@ main {
 #engineSelect {
     border: none;
     outline: none;
-    padding: 18px 15px;
+    padding: 18px 40px 18px 25px;
     font-size: 0.95rem;
     background: rgba(102, 126, 234, 0.1);
     color: #667eea;
@@ -108,29 +109,45 @@ main {
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23667eea' d='M1.41 0L6 4.59 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 12px;
 }
 
 #engineSelect:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background-color: rgba(102, 126, 234, 0.2);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23667eea' d='M1.41 0L6 4.59 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 12px;
 }
 
 #engineSelect:focus {
-    background: rgba(102, 126, 234, 0.15);
+    background-color: rgba(102, 126, 234, 0.15);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23667eea' d='M1.41 0L6 4.59 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 12px;
 }
 
 .search-btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     color: white;
-    margin-right: 4px;
+    margin-right: 6px;
+    padding: 2px;
 }
 
 .search-btn:hover {
