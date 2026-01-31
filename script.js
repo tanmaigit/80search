@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'backgrounds/background4.png'
     ];
     const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
-    document.body.style.backgroundImage = `url('${randomBackground}')`;
+    const bgImage = document.getElementById('backgroundImage');
+    if (bgImage) {
+        bgImage.src = randomBackground;
+    }
 
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
