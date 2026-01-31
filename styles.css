@@ -24,8 +24,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(0px);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(3px);
     z-index: -1;
 }
 
@@ -171,11 +171,13 @@ footer nav {
 }
 
 footer a {
-    color: #666;
+    color: #333;
     text-decoration: none;
     font-size: 0.95rem;
+    font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9);
 }
 
 footer a::after {
@@ -199,7 +201,8 @@ footer a:hover::after {
 }
 
 .separator {
-    color: #ccc;
+    color: #999;
+    font-weight: 300;
 }
 
 /* Animations */
