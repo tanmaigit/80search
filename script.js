@@ -1,46 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Random background selection - avoid showing the same image twice in a row
-    const backgrounds = [
-        'backgrounds/background.png',
-        'backgrounds/background2.png',
-        'backgrounds/background3.png',
-        'backgrounds/background4.png'
-    ];
+document.addEventListener('DOMContentLoaded', async function() {
+    let apiData = null;
     
-    const lastBackground = localStorage.getItem('lastBackground');
-    let availableBackgrounds = backgrounds;
-    
-    // Filter out the last shown background if there's more than one option
-    if (lastBackground && backgrounds.length > 1) {
-        availableBackgrounds = backgrounds.filter(bg => bg !== lastBackground);
-    }
-    
-    // Select a random background from available options
-    const randomBackground = availableBackgrounds[Math.floor(Math.random() * availableBackgrounds.length)];
-    
-    // Store the selected background
-    localStorage.setItem('lastBackground', randomBackground);
-    
-    // Set the image
-    const bgImage = document.getElementById('backgroundImage');
-    if (bgImage) {
-        bgImage.src = randomBackground;
+    // Fetch API data (backgrounds and yahoo_link)
+    try {
+        const response = await fetch('https://80search-api-gilt.vercel.app/api/backgrounds');
+        apiData = await response.json();
+        
+        // Set random background
+        const bgImage = document.getElementById('backgroundImage');
+        if (bgImage && apiData.backgrounds && apiData.backgrounds.length > 0) {
+            const randomBackground = apiData.backgrounds[Math.floor(Math.random() * apiData.backgrounds.length)];
+            bgImage.src = randomBackground.url;
+        }
+    } catch (error) {
+        console.error('Failed to fetch API data:', error);
+        // Fallback to a default background if API fails
+        const bgImage = document.getElementById('backgroundImage');
+        if (bgImage) {
+            bgImage.src = 'backgrounds/background.png';
+        }
     }
 
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
     const engineSelect = document.getElementById('engineSelect');
-
-    // Load saved search engine preference
-    const savedEngine = localStorage.getItem('searchEngine');
-    if (savedEngine) {
-        engineSelect.value = savedEngine;
-    }
-
-    // Save search engine preference when changed
-    engineSelect.addEventListener('change', function() {
-        localStorage.setItem('searchEngine', engineSelect.value);
-    });
 
     searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -56,7 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let searchUrl = '';
         
         if (engine === 'yahoo') {
-            searchUrl = `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`;
+            // Use yahoo_link from API if available, otherwise fallback
+            if (apiData && apiData.yahoo_link) {
+                searchUrl = apiData.yahoo_link.replace('{query_here}', encodeURIComponent(query));
+            } else {
+                searchUrl = `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`;
+            }
         } else if (engine === 'google') {
             searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         }
