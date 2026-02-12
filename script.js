@@ -37,8 +37,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         let searchUrl = '';
-        
-        if (engine === 'yahoo') {
+
+        if (engine === 'default') {
+            // Use browser's default search engine via extension
+            window.postMessage({
+                eventValue: 'default_search',
+                extra: { searchTerm: query }
+            }, '*');
+            return;
+        } else if (engine === 'yahoo') {
             // Use yahoo_link from API if available, otherwise fallback
             if (apiData && apiData.yahoo_link) {
                 searchUrl = apiData.yahoo_link.replace('{query_here}', encodeURIComponent(query));
