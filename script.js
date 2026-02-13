@@ -17,13 +17,39 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Fallback to a default background if API fails
         const bgImage = document.getElementById('backgroundImage');
         if (bgImage) {
-            bgImage.src = 'backgrounds/background.png';
+            bgImage.src = '/backgrounds/background1.png';
         }
     }
 
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
     const engineSelect = document.getElementById('engineSelect');
+
+    // Handle "Default" option visibility
+    // - Mobile/Tablet: Always hide Default option
+    // - Desktop: Show Default option if it exists
+    function handleDefaultOption() {
+        const isMobileOrTablet = window.innerWidth <= 768;
+        const defaultOption = engineSelect.querySelector('option[value="default"]');
+        
+        if (!defaultOption) return; // No default option on this page
+        
+        if (isMobileOrTablet) {
+            // Hide Default option on mobile/tablet
+            defaultOption.style.display = 'none';
+            // If Default was selected, switch to Yahoo
+            if (engineSelect.value === 'default') {
+                engineSelect.value = 'yahoo';
+            }
+        } else {
+            // Show Default option on desktop
+            defaultOption.style.display = '';
+        }
+    }
+    
+    // Run on load and on resize
+    handleDefaultOption();
+    window.addEventListener('resize', handleDefaultOption);
 
     searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
